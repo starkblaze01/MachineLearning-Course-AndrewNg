@@ -19,10 +19,13 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+predictions= X*theta;
+sqrErrors = (predictions-y).^2;
+
+J= 1/(2*m) * sum(sqrErrors) + (lambda.*sum([0 ; theta(2:size(theta),:)].^2))/(2*m);
 
 
-
-
+grad = (X'*(predictions - y))/m + (lambda.*[0 ; theta(2:size(theta),:)])/m;
 
 
 
